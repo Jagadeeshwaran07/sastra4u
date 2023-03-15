@@ -1,0 +1,153 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>sastra4u - register</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success static-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">SASTRA for YOU</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="signin">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sign up
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+
+        <div class="container">
+
+            <h2>SIGN UP</h2>
+            <br>
+            <div>
+                <style>
+                h5{
+                    padding-bottom: 10px;
+                    color: red;
+                }
+                </style>
+                {% for message in messages %}
+                <h5>{{message}}</h5>
+                {% endfor %}
+            </div>
+
+            <form method="POST" action="register">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Username:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter Name" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Email ID:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter SASTRA Mail ID" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Course:</label>
+                    <input type="text" class="form-control" id="course" placeholder="Select Course" name="course" list = "courses"/>
+                    <datalist id="courses">
+                        <option> Aerospace Engineering</option>
+                        <option> Bioengineering</option>
+                        <option> Bioinformatics</option>
+                        <option> Biotechnology</option>
+                        <option> Chemical Engineering</option>
+                        <option> Civil Engineering</option>
+                        <option> Computer Science & Business Systems</option>
+                        <option> Computer Science & Engineering</option>
+                        <option> Computer Science & Engineering (Artificial Intelligence & Data Science)</option>
+                        <option> Comptuer Science & Engineering (Cyber Security & Block Chain Technology)</option>
+                        <option> Computer Science & Engineering (IoT & Automation)</option>
+                        <option> Electrical and Electronics Engineering</option>
+                        <option> Electrical and Electronics Engineering (Smart Grid and Electric Vehicles)</option>
+                        <option> Electronics & Communication Engineering</option>
+                        <option> Electronics & Communication Engineering (CPS)</option>
+                        <option> Electronics & Instrumentation Engineering</option>
+                        <option> Robotics & Artificial Intelligence</option>
+                        <option> Electronics Engineering (VLSI Design & Technology</option>)
+                        <option> Information and Communcation Technology</option>
+                        <option> Information Technology</option>
+                        <option> Mechanical Engineering</option>
+                        <option> Mechanical Engineering (Digital Manufacturing)</option>
+                        <option> Mechatronics</option>
+                    </datalist>
+                </div> 
+
+                <!-- <div class="form-group">
+                    <label for="">Semester:</label>
+                    <input type="number" class="form-control" id="sem" placeholder="Current Semester" name="sem" min = "1" max = "8">
+                </div>  -->
+
+                <div class="form-group">
+                    <label for="">Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pass1">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Repeat Password:</label>
+                    <input type="password" class="form-control" id="rpwd" placeholder="Repeat password" name="pass2">
+                </div>
+
+                <button type="submit" class="btn btn-default" >Submit</button> 
+                
+            </form>
+        </div>
+
+          
+        <div class="container">
+            <br>
+            <br>
+            <form method="POST" action="check_otp">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Verification:</label>
+                    <input type="text" class="form-control" id="otp" placeholder="Enter Verification Code" name="otp">
+                </div> 
+                <button type="submit" class="btn btn-default">Verify</button>
+            </form>
+
+        </div>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="{% static 'vendor/jquery/jquery.slim.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+
+</html>
+  

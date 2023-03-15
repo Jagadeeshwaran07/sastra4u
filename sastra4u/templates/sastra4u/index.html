@@ -1,0 +1,229 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SASTRA4U</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body onload="randomQuotes()">
+    
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">SASTRA for YOU</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signout">Logout</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://webstream.sastra.edu/sastrapwi/" target="_blank">Students web portal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=" https://www.sastra.edu/downloads/menu/Parents/BTech-MTech-Integ-Syllabus-First-Year-2020-21.pdf" target="_blank">I year syllabus</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.sastra.edu/downloads/menu/Academics/MC-Calander_2022-23_U1.pdf" target="_blank">Calander_2022-23</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.sastra.edu/academic-updates.html" target="_blank">Academic-updates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.sastra.edu/headlines-archives.html" target="_blank">Archieved Headlines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://biometric.sastra.edu/" target="_blank">Girls Hostel Permission</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.sastra.edu/contact.html" target="_blank">SASTRA Contact</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="YourSyllabus">YourSyllabus</a>
+            </li> -->
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    
+    <!-- <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <marquee class="mt-5" direction ="right">Colloseum Going On !</marquee>
+          <marquee class="mt-5" direction ="right">Welcome, {{user.first_name}} </marquee> 
+
+        </div>
+      </div>
+    </div> -->
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <marquee class="mt-5" direction ="right">!!!Colloseum 13th edition Going On !!!</marquee>
+          <br>
+          <!-- <marquee class="mt-5" direction ="right">Welcome, {{user.username}} </marquee> -->
+          <center><h4>Welcome, {{user.username}}</h4></center>
+          <!-- <marquee class="mt-5" direction ="right">Welcome, {{user.first_name}} </marquee> -->
+          <br>
+          <div>
+              <style>
+                h2{
+                  padding-bottom: 10px;
+                  color: rgb(9, 255, 0);
+                }
+              </style>
+              {% for message in messages %}
+              <h2>{{message}}</h2>
+              {% endfor %}
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <form method="POST" action="/">
+        {% csrf_token %}
+        <h1 class="mt-5" style="text-align: center;vertical-align: middle;line-height: 35px;height:35px;background-color:#069ed1;color:white;font-family: sans-serif;font-weight: bold;font-size: 15px;width:100%;border-radius: 15px 15px 0 0; " align="center">Current sem SGPA goal Calculator</h1>
+  
+        <div class="sgpacalculation">
+          <input type="text" class="form-control" id="CGPA" placeholder = 'Enter CGPA*' name="CGPA">
+          <br>
+          <input type="text" class="form-control" id="Credits" placeholder = 'Enter Current sem credits*' name="Credits">
+          <br>
+          <input type="text" class="form-control" id="Total_credits" placeholder = 'Enter Total credits without P garde credits*' name="Total_credits">
+          <br>
+          <input type="text" class="form-control" id="CGPA1" placeholder = 'Enter desired CGPA*' name="CGPA1">
+          <br>
+          <input type="text" class="form-control" id="Arrears" placeholder='Enter total Arrear credits or 0 if none*' name="Arrears">
+          <br>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </form>
+    </div>
+    
+
+    <div class="container">
+      <h1 class="mt-5" style="text-align: center;vertical-align: middle;line-height: 35px;height:35px;background-color:#069ed1;color:white;font-family: sans-serif;font-weight: bold;font-size: 15px;width:100%;border-radius: 15px 15px 0 0; " align="center">Grade Calculation
+      </h1>
+      <form method="POST" action="gradecalculation">
+        {% csrf_token %}
+        <div class="gradescalculation">
+          <input type="number" class="form-control" id="internal" placeholder = 'Enter internals' name="internal" min="0" max ="50">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-default">Submit</button>
+        
+      </form>
+    </div>
+
+    <div class="container">
+      <h1 class="mt-5" style="text-align: center;vertical-align: middle;line-height: 35px;height:35px;background-color:#069ed1;color:white;font-family: sans-serif;font-weight: bold;font-size: 15px;width:100%;border-radius: 15px 15px 0 0; " align="center">Maintain 80% attendance (approx.)
+      </h1>
+      <form method="POST" action="attendance">
+        {% csrf_token %}
+        <div>
+          <input type="number" class="form-control" id="credit" placeholder = 'Enter subject credit' name="credit" min="1" max ="4">
+        </div>
+        <br>
+        <div>
+          <input type="number" class="form-control" id="absent" placeholder = 'Enter no. of absent taken so far ' name="absent" min="0" max ="60">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-default">Submit</button>
+        
+      </form>
+    </div>
+
+    <div class="container">
+      <h1 class="mt-5" style="text-align: center;vertical-align: middle;line-height: 35px;height:35px;background-color:#069ed1;color:white;font-family: sans-serif;font-weight: bold;font-size: 15px;width:100%;border-radius: 15px 15px 0 0; " align="center">Ask Us
+      </h1>
+      <form method="POST" action="queries">
+        {% csrf_token %}
+        <div >
+          <input type="text" class="form-control" id="query" placeholder = 'Ask us any academic queries' name="query">
+        </div>
+        <br>
+        <div >
+          <input type="hidden" class="form-control" id="email" placeholder = 'Enter emal ID' name="email" value={{user.email}}>
+        </div>
+        <button type="submit" class="btn btn-default">Send Us</button>
+        
+      </form>
+    </div>
+
+    <div class="container">
+      <form method="POST" action="YourSyllabus">
+        {% csrf_token %}
+        <div class="syllabus">
+          <input type="hidden" class="form-control" id="syllabus" placeholder = 'Enter syllabus' name="syllabus" value ="{{user.first_name}}">
+        </div>
+        <br>
+        <center><button type="submit" class="btn btn-default">View Your Syllabus</button></center>
+        <br>
+        <!-- <center><h5>There are no shortcuts to any place worth going</h5></center>
+         -->
+        <script>
+          var quotes = ['A person who never made a mistake never tried anything new', 'Excellence is not a skill. It is an attitude', 'The best way to predict your future is to create it', 'The future belongs to those who believe in the beauty of their dreams','A little progress each day adds up to big results',
+                       'Skill is only developed by hours and hours of work','The way to get started is to quit talking and begin doing','The beautiful thing about learning is that nobody can take it away from you','If opportunity doesn’t knock, build a door',
+                      'You don’t have to be great to start, but you have to start to be great','Start where you are. Use what you have. Do what you can',
+                      'Fall seven times, stand up eight','If there is no struggle, there is no progress','A person who never made a mistake never tried anything new','I never look back, darling. It distracts from the now','You are braver than you believe, stronger than you seem and smarter than you think','I’d rather regret the things I’ve done than regret the things I haven’t done',
+                      'You can never leave footprints that last if you are always walking on tiptoe',' passion and desire for authenticity is strong','Life is like riding a bicycle. To keep your balance you must keep movingDon’t let what you cannot do interfere with what you can do','Don’t look at your feet to see if you are doing it right. Just dance',
+                      'The way to get started is to quit talking and begin doing','Action is the foundational key to all success','Failure is the opportunity to begin again more intelligently',
+                      'Be stronger than your excuses','The expert in anything was once a beginner','Learning is never done without errors and defeat',
+                      'The two most important days in your life are the day you are born and the day you find out why','You only live once, but if you do it right, once is enough','If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on','Keep going. Everything you need will come to you at the perfect time','Focus on doing the right things instead of a bunch of things',
+                      'It never gets easier. You just get better','Successful people are not gifted; they just work hard, then succeed on purpose','Whatever you are, be a good one','Opportunities don’t happen. You create them',
+                      'The elevator to success is out of order. You’ll have to use the stairs, one step at a time','Work until your bank account looks like a phone number','Think like a proton. Always positive',
+                      ]
+          function randomQuotes(){
+            var idx = Math.floor(Math.random() * quotes.length)
+            document.getElementById('quote').innerHTML = quotes[idx]
+          }
+          </script>
+          <center><p id="quote"></p></center>
+
+        
+      </form>
+    </div>
+
+    
+
+    
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    
+    
+  </body>
+
+</html>
